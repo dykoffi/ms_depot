@@ -5,9 +5,10 @@
     "main": "./index.js",
     "private": false,
     "dependencies": {
-        "cqx-secure": "^1.0.10",
+        "@prisma/client": "3.7.0",
         "cookie-parser": "^1.4.6",
         "cors": "^2.8.5",
+        "cqx-secure": "^1.0.10",
         "dotenv": "^10.0.0",
         "express": "^4.17.2",
         "helmet": "^4.6.0",
