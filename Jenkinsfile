@@ -19,7 +19,7 @@ pipeline{
             stages{
                 stage("Create test DB"){
                     steps{
-                        sh "docker-compose up -d db_test"
+                        sh "docker-compose up -d ms_depot_db_test"
                         sh "echo DATABASE_URL=postgres://register_db_dev_test:4454@localhost:${DB_TEST_PORT}/test > .env"
                         sh 'npx prisma db push'
                     }
@@ -50,7 +50,7 @@ pipeline{
 
             post{
                 always{
-                    sh 'docker-compose stop db_test'
+                    sh 'docker-compose stop ms_depot_db_test'
                     sh 'pm2 delete pm2_Ins_ms_depot'
                 }
 
