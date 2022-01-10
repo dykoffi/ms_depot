@@ -1,0 +1,41 @@
+version: "3.9" # optional since v1.27.0
+services:
+  ms_depot:
+      image: dykoffi/ms_depot:1.0.0
+      container_name: ms_depot
+      environment:
+        - DATABASE_URL=postgres://ms_depot_user:4454@db_staging/ms_depot_db_staging
+      depends_on:
+        - ms_depot_db_staging
+      ports:
+        - 29100:8888
+
+  ms_depot_db_dev:
+    image: postgres
+    container_name: ms_depot_db_dev
+    environment:
+      - POSTGRES_USER=ms_depot_user
+      - POSTGRES_DB=ms_depot_db_dev
+      - POSTGRES_PASSWORD=4454
+    ports:
+      - 60966:5432
+
+  ms_depot_db_test:
+    image: postgres
+    container_name: ms_depot_db_test
+    environment:
+      - POSTGRES_USER=ms_depot_user
+      - POSTGRES_DB=ms_depot_db_test
+      - POSTGRES_PASSWORD=4454
+    ports:
+      - 23049:5432
+
+  ms_depot_db_staging:
+    image: postgres
+    container_name: ms_depot_db_staging
+    environment:
+      - POSTGRES_USER=ms_depot_user
+      - POSTGRES_DB=ms_depot_db_staging
+      - POSTGRES_PASSWORD=4454
+    ports:
+      - 54554:5432
