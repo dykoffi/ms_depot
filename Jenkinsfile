@@ -20,7 +20,6 @@ pipeline{
             steps{
                 sh "cqx build"
                 sh "zip -r build.zip build"
-                sh "docker build -t dykoffi/${APP_NAME}:${APP_VERSION} ."
             }
 
             post{
@@ -56,7 +55,8 @@ pipeline{
             parallel {
                 stage("Deploy to planetHoster"){ 
                     steps{
-                        sh 'cqx deploy '
+                        sh 'cqx deploy -s zdntayqz@199.16.130.173:5022/home/zdntayqz/k -p gYV1WvxdfQ2EKw \
+                        --db eoiejeoeijeoifj -c "mkdir edykoffi"'
                     }
                 }
                 stage("Deploy to AWS EC2"){ 
@@ -77,18 +77,6 @@ pipeline{
                 stage("Publish to AWS ECR"){ 
                     steps{
                         sh 'echo publish to ECR : skip'
-                    }
-                }
-                stage("Publish to DockerHUB"){ 
-                    steps{
-                        sh "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
-                        sh "docker push dykoffi/${APP_NAME}:${APP_VERSION}"
-                    }
-
-                    post{
-                        always{
-                            sh 'docker logout'
-                        }
                     }
                 }
             }
