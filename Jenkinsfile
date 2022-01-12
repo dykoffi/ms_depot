@@ -16,51 +16,6 @@ pipeline{
             }
         }
 
-        stage("Test"){
-            stages{
-                stage("Create test DB"){
-                    steps{
-                        sh 'echo "785942163" | sudo -S docker-compose up -d ms_depot_db_test'
-                        sh "echo DATABASE_URL=postgres://register_db_dev_test:4454@localhost:${DB_TEST_PORT}/test > .env"
-                        sh 'npx prisma db push'
-                    }
-                }
-
-                stage("PM2 : run 4 instances"){
-                    steps{
-                        sh 'echo PROTOCOL=http > info.env'
-                        sh 'echo PORT=${APP_TEST_PORT} >> info.env'
-                        sh 'echo HOST=localhost >> info.env'
-                        sh 'pm2 start index.js -i 4 --name pm2_Ins_ms_depot'
-                    }
-                }
-
-                stage("Frisby : test routes"){
-                    steps{
-                        sh 'yarn test > tests/reports/frisby.test'
-                    }
-                }
-
-                stage("Artillery : test scenarios (20s)"){
-                    steps{
-                        sh "npx artillery run tests/scen1.yml -c tests/config.yml -o tests/reports/report-test1.json -t http://localhost:${APP_TEST_PORT}"
-                        sh "npx artillery report tests/reports/report-test1.json -o tests/reports/report-test1.html"
-                    }
-                }
-            }
-
-            post{
-                always{
-                    sh 'docker-compose stop ms_depot_db_test'
-                    sh 'pm2 delete pm2_Ins_ms_depot'
-                }
-
-                success {
-                    archiveArtifacts artifacts: 'tests/reports/**.*', fingerprint: true
-                }
-            }
-        }
-
         stage("Create packages"){
             steps{
                 sh "cqx build"
