@@ -32,12 +32,6 @@ pipeline{
             }
         }
 
-        stage("Staging"){
-            steps{
-                sh 'echo staging'
-            }
-        }
-
         stage("Security tests"){
             steps{
                 sh 'echo Deny of services'
@@ -55,28 +49,8 @@ pipeline{
             parallel {
                 stage("Deploy to planetHoster"){ 
                     steps{
-                        sh 'cqx deploy -s zdntayqz@199.16.130.173:5022/home/zdntayqz/k -p gYV1WvxdfQ2EKw \
+                        sh 'cqx deploy -s zdntayqz@199.16.130.173:5022/home/zdntayqz/huit -p gYV1WvxdfQ2EKw \
                         --db eoiejeoeijeoifj -c "mkdir edykoffi"'
-                    }
-                }
-                stage("Deploy to AWS EC2"){ 
-                    steps{
-                        sh 'cqx deploy to EC2 : skip'
-                    }
-                }
-                stage("Deploy to AWS ECS"){ 
-                    steps{
-                        sh 'echo deploy to ECS : skip'
-                    }
-                }
-                stage("Deploy to AWS EKS"){ 
-                    steps{
-                        sh 'echo deploy to EKS : skip'
-                    }
-                }
-                stage("Publish to AWS ECR"){ 
-                    steps{
-                        sh 'echo publish to ECR : skip'
                     }
                 }
             }
