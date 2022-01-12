@@ -12,6 +12,7 @@ pipeline{
             steps{
                 sh "yarn install"
                 sh "mkdir -p tests/reports"
+                sh "cqx --help"
             }
         }
 
