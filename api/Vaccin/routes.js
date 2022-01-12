@@ -13,7 +13,7 @@ router
 
     .post("/", async (req, res) => {
 
-        vaccin.create({ data: req.body })
+        vaccin.create({ data: {...req.body, qte : parseInt(req.body.qte) } })
             .then(data => { res.status(201).json(data) })
             .catch(error => {
                 console.error(error);

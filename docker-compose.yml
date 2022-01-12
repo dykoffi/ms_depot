@@ -1,10 +1,10 @@
 version: "3.9" # optional since v1.27.0
 services:
   ms_depot:
-      image: dykoffi/ms_depot:1.0.0
+      image: dykoffi/ms_depot:latest
       container_name: ms_depot
       environment:
-        - DATABASE_URL=postgres://ms_depot_user:4454@db_staging/ms_depot_db_staging
+        - DATABASE_URL=postgres://ms_depot_user:4454@ms_depot_db_staging/ms_depot_db_staging
       depends_on:
         - ms_depot_db_staging
       ports:
