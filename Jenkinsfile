@@ -40,9 +40,9 @@ pipeline{
 
         stage("Security tests"){
             steps{
-                sh 'Deny of services'
-                sh 'XSS'
-                sh 'SQL injection'
+                sh 'echo Deny of services'
+                sh 'echo XSS'
+                sh 'echo SQL injection'
             }
         }
 
