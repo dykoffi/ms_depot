@@ -49,8 +49,14 @@ pipeline{
             parallel {
                 stage("Deploy to planetHoster"){ 
                     steps{
-                        sh 'cqx deploy -s zdntayqz@199.16.130.173:5022/home/zdntayqz/huit -p gYV1WvxdfQ2EKw \
-                        --db eoiejeoeijeoifj -c "mkdir edykoffi"'
+                        sh "cqx deploy \
+                        -s $PLANETHOSTER_CREDENTIALS_USR@199.16.130.173:5022/home/$PLANETHOSTER_CREDENTIALS_USR/huit \
+                        -p $PLANETHOSTER_CREDENTIALS_PWD \
+                        --db eoiejeoeijeoifj \
+                        -c 'mkdir edykoffi'
+                        -c 'mkdir edykoffi'
+                        -c 'mkdir edykoffi'
+                        "
                     }
                 }
             }
