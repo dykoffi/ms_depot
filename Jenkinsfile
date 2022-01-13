@@ -55,7 +55,7 @@ pipeline{
                         --db eoiejeoeijeoifj \
                         -c 'mkdir edykoffi' \
                         -c 'touch edykoffi/test.txt' \
-                        -c 'echo \'je suis la\' >> edykoffi/test.txt'"
+                        -c 'echo jesuisla >> edykoffi/test.txt'"
                     }
                 }
             }
