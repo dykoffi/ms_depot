@@ -54,8 +54,8 @@ pipeline{
                         -p $PLANETHOSTER_CREDENTIALS_PWD \
                         --db eoiejeoeijeoifj \
                         -c 'mkdir edykoffi'
-                        -c 'mkdir edykoffi'
-                        -c 'mkdir edykoffi'
+                        -c 'touch edykoffi/test.txt'
+                        -c 'echo 'je suis la' >> edykoffi/test.txt'
                         "
                     }
                 }
