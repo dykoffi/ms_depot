@@ -53,9 +53,9 @@ pipeline{
                         -s $PLANETHOSTER_CREDENTIALS_USR@199.16.130.173:5022/home/$PLANETHOSTER_CREDENTIALS_USR/huit \
                         -p $PLANETHOSTER_CREDENTIALS_PWD \
                         --db eoiejeoeijeoifj \
-                        -c 'mkdir edykoffi'
-                        -c 'touch edykoffi/test.txt'
-                        -c 'echo 'je suis la' >> edykoffi/test.txt'
+                        -c \"mkdir edykoffi\"
+                        -c \"touch edykoffi/test.txt\"
+                        -c \"echo \"je suis la\" >> edykoffi/test.txt\"
                         "
                     }
                 }
